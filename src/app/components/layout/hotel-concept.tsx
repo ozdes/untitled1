@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 
@@ -21,6 +21,7 @@ export default function HotelConcept() {
     const [items, setItems] = useState(initialItems);
     const [showMore, setShowMore] = useState(false);
     const [selectedItems, setSelectedItems] = useState({});
+    const [queryString, setQueryString] = useState('');
     const router = useRouter();
 
     const handleShowMore = () => {
@@ -32,7 +33,7 @@ export default function HotelConcept() {
         setShowMore(!showMore);
     };
 
-    const handleCheckboxChange = (id, value) => {
+    const handleCheckboxChange = (id) => {
         setSelectedItems((prevState) => {
             const updatedItems = {
                 ...prevState,
@@ -47,8 +48,7 @@ export default function HotelConcept() {
                 })
                 .filter(value => value !== null);
 
-            const queryString = new URLSearchParams({ hotelConcept: selectedValues.join(',') }).toString();
-            router.push(`/Search?${queryString}`);
+            setQueryString(new URLSearchParams({ hotelConcept: selectedValues.join(',') }).toString());
 
             return updatedItems;
         });
@@ -56,8 +56,15 @@ export default function HotelConcept() {
 
     const handleReset = () => {
         setSelectedItems({});
-        router.push(`/Search`);
+        setQueryString('');
     };
+
+    // Use useEffect to push the router after the state update
+    useEffect(() => {
+        if (queryString) {
+            router.push(`/Search?${queryString}`);
+        }
+    }, [queryString, router]);
 
     return (
         <div>
@@ -73,7 +80,7 @@ export default function HotelConcept() {
                         className="mx-1 my-1 border-orange-400 text-orange-600 focus:ring-orange-500"
                         id={`hotel-${hotel.id}`}
                         checked={selectedItems[hotel.id] || false}
-                        onChange={() => handleCheckboxChange(hotel.id, hotel.value)}
+                        onChange={() => handleCheckboxChange(hotel.id)}
                     />
                     <label htmlFor={`hotel-${hotel.id}`} className="text-sm">
                         {hotel.name}
