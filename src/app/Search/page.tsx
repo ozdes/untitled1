@@ -1,4 +1,5 @@
 'use client';
+
 import Header from "@/app/components/layout/header";
 import Form from "@/app/components/layout/form";
 import CardResult from "@/app/components/layout/card-result";

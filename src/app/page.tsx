@@ -55,7 +55,7 @@ function Home() {
                         onClick={() => handleTabClick("package")}
                         role="tab" aria-selected={activeTab === "package"} aria-controls="package"
                     >
-                      <Image className="mr-2" alt="Package" src={vecPackage} objectFit />
+                      <Image className="mr-2" alt="Package" src={vecPackage} objectFit="cover" />
                       Package
                     </a>
                   </li>
@@ -65,7 +65,7 @@ function Home() {
                         onClick={() => handleTabClick("hotel")}
                         role="tab" aria-selected={activeTab === "hotel"} aria-controls="hotel"
                     >
-                      <Image className="mr-2" alt="Hotel" src={vecHotel} objectFit />
+                      <Image className="mr-2" alt="Hotel" src={vecHotel} objectFit="cover" />
                       Hotel
                     </a>
                   </li>
@@ -75,7 +75,7 @@ function Home() {
                         onClick={() => handleTabClick("flight")}
                         role="tab" aria-selected={activeTab === "flight"} aria-controls="flight"
                     >
-                      <Image className="mr-2" alt="Flight" src={vecFlight} objectFit />
+                      <Image className="mr-2" alt="Flight" src={vecFlight} objectFit="cover" />
                       Flight
                     </a>
                   </li>

@@ -3,7 +3,7 @@ import { DatePicker, Input, Select } from "antd";
 import HotelConcept from "@/app/components/layout/hotel-concept";
 import RadioButton from "@/app/components/layout/radio-button";
 import { useRouter, useSearchParams } from 'next/navigation';
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 function Form() {
     const router = useRouter();
@@ -12,10 +12,10 @@ function Form() {
     const [from, setFrom] = useState(searchParams.get("from") || "0");
     const [destination, setDestination] = useState(searchParams.get("destination") || "0");
     const [participants, setParticipants] = useState(searchParams.get("participants") || "0");
-    const [date, setDate] = useState(searchParams.get("date") || null);
+    const [date, setDate] = useState<Dayjs | null>(null);
     const [nights, setNights] = useState(searchParams.get("nights") || "0");
 
-    const updateURL = (key, value) => {
+    const updateURL = (key: string, value: string | null) => {
         const params = new URLSearchParams(searchParams);
         if (value) {
             params.set(key, value);
@@ -38,7 +38,7 @@ function Form() {
     }, [participants]);
 
     useEffect(() => {
-        updateURL("date", date ? dayjs(date).format("YYYY-MM-DD") : "0");
+        updateURL("date", date ? dayjs(date).format("YYYY-MM-DD") : '');
     }, [date]);
 
     useEffect(() => {
@@ -80,9 +80,7 @@ function Form() {
                 <label className="text-sm text-slate-600">Date</label>
                 <DatePicker
                     value={date ? dayjs(date) : null}
-                    onChange={(dateMoment, dateString) => {
-                        setDate(dateString);
-                    }}
+                    onChange={(dateMoment) => setDate(dateMoment)}
                     className="w-full border-gray-300 rounded-md"
                 />
 

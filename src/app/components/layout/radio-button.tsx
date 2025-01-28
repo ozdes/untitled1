@@ -1,10 +1,11 @@
 'use client';
 import { useRouter } from "next/navigation";
+import React from "react";
 
 function RadioButton() {
     const router = useRouter();
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
 
         const queryString = new URLSearchParams({ star: value }).toString();

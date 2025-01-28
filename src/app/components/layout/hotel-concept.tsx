@@ -20,7 +20,8 @@ export default function HotelConcept() {
 
     const [items, setItems] = useState(initialItems);
     const [showMore, setShowMore] = useState(false);
-    const [selectedItems, setSelectedItems] = useState({});
+
+    const [selectedItems, setSelectedItems] = useState<Record<number, boolean>>({});
     const [queryString, setQueryString] = useState('');
     const router = useRouter();
 
@@ -33,7 +34,7 @@ export default function HotelConcept() {
         setShowMore(!showMore);
     };
 
-    const handleCheckboxChange = (id) => {
+    const handleCheckboxChange = (id: number) => {
         setSelectedItems((prevState) => {
             const updatedItems = {
                 ...prevState,
@@ -41,7 +42,7 @@ export default function HotelConcept() {
             };
 
             const selectedValues = Object.keys(updatedItems)
-                .filter((key) => updatedItems[key])
+                .filter((key) => updatedItems[parseInt(key)])
                 .map((key) => {
                     const item = items.find(item => item.id === parseInt(key));
                     return item ? item.value : null;
@@ -59,7 +60,6 @@ export default function HotelConcept() {
         setQueryString('');
     };
 
-    // Use useEffect to push the router after the state update
     useEffect(() => {
         if (queryString) {
             router.push(`/Search?${queryString}`);
