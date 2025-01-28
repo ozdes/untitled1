@@ -1,15 +1,14 @@
-'use client';
 import { Button, DatePicker, Input, Select } from "antd";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 function Flight() {
     const router = useRouter();
 
     const [from, setFrom] = useState('');
     const [destination, setDestination] = useState('');
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState<Dayjs | null>(null);
     const [participants, setParticipants] = useState('Participants');
 
     const handleSearch = () => {
@@ -54,7 +53,7 @@ function Flight() {
                 <DatePicker
                     className="h-full md:mr-3 w-full md:w-80"
                     style={{ border: 'none' }}
-                    value={date ? dayjs(date) : null}
+                    value={date}
                     onChange={(dateMoment) => setDate(dateMoment)}
                 />
 

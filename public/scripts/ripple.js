@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const ripple = document.createElement("span");
             ripple.classList.add("ripple");
 
-            // Position of the click
             const rect = element.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
             const x = event.clientX - rect.left - size / 2;
@@ -23,10 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
             ripple.style.left = `${x}px`;
             ripple.style.top = `${y}px`;
 
-            // Append to the element
             element.appendChild(ripple);
 
-            // Remove the ripple after animation
             ripple.addEventListener("animationend", () => {
                 ripple.remove();
             });

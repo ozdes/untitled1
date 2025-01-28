@@ -2,13 +2,13 @@
 import { Button, DatePicker, Input, Select } from "antd";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 function Package() {
     const router = useRouter();
     const [from, setFrom] = useState('');
     const [destination, setDestination] = useState('');
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState<Dayjs | null>(null);
     const [nights, setNights] = useState('Nights');
     const [participants, setParticipants] = useState('Participants');
 
