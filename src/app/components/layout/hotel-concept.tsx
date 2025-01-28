@@ -41,7 +41,11 @@ export default function HotelConcept() {
 
             const selectedValues = Object.keys(updatedItems)
                 .filter((key) => updatedItems[key])
-                .map((key) => items.find(item => item.id === parseInt(key)).value);
+                .map((key) => {
+                    const item = items.find(item => item.id === parseInt(key));
+                    return item ? item.value : null;
+                })
+                .filter(value => value !== null);
 
             const queryString = new URLSearchParams({ hotelConcept: selectedValues.join(',') }).toString();
             router.push(`/Search?${queryString}`);
