@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { DatePicker, Input, Select } from "antd";
 import HotelConcept from "@/app/components/layout/hotel-concept";
 import RadioButton from "@/app/components/layout/radio-button";
@@ -101,5 +101,10 @@ function Form() {
         </div>
     );
 }
-
-export default Form;
+export default function SearchPage() {
+    return (
+        <Suspense fallback={null}>
+            <Form />
+        </Suspense>
+    );
+}
