@@ -15,7 +15,7 @@ function SearchComponent() {
     const participants = searchParams.get('participants') || '';
 
     const [searchData, setSearchData] = useState({
-        from: '',
+        from: ' ',
         destination: '',
         date: '',
         nights: '',
