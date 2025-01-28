@@ -1,36 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Header from "@/app/components/layout/header";
 import Form from "@/app/components/layout/form";
 import CardResult from "@/app/components/layout/card-result";
 
 function SearchComponent() {
-    const searchParams = useSearchParams();
-
-    const from = searchParams.get('from') || '';
-    const destination = searchParams.get('destination') || '';
-    const date = searchParams.get('date') || '';
-    const nights = searchParams.get('nights') || '';
-    const participants = searchParams.get('participants') || '';
-
-    const [searchData, setSearchData] = useState({
-        from: ' ',
-        destination: '',
-        date: '',
-        nights: '',
-        participants: ''
-    });
-
-    useEffect(() => {
-        setSearchData({
-            from,
-            destination,
-            date,
-            nights,
-            participants
-        });
-    }, [from, destination, date, nights, participants]);
 
     return (
         <div className="w-full p-2">

@@ -1,14 +1,11 @@
 'use client';
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 function RadioButton() {
-    const [selectedValue, setSelectedValue] = useState('');
     const router = useRouter();
 
     const handleChange = (event) => {
         const value = event.target.value;
-        setSelectedValue(value);
 
         const queryString = new URLSearchParams({ star: value }).toString();
         router.push(`/Search?${queryString}`);
