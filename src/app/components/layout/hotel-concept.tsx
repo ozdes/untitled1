@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 
